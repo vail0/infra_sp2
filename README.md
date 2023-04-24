@@ -47,7 +47,7 @@
 Клонировать репозиторий и перейти в него в командной строке:
 
 ```
-git clone git@github.com:Antipic/api_yamdb.git
+git clone git@github.com:vail0/infra_sp2.git
 ```
 
 ```
@@ -84,4 +84,36 @@ python manage.py migrate
 
 ```
 python manage.py runserver
+```
+
+Запуск контейнера:
+(Из корневой папки)
+```
+docker-compose -f ./infra/docker-compose.yaml up
+```
+
+Выполнение миграций и создание суперпользователя:
+(Из папки infra/)
+```
+docker-compose exec web python manage.py migrate
+```
+
+```
+docker-compose exec web python manage.py createsuperuser
+```
+
+Запуск статики:
+```
+docker-compose exec web python manage.py collectstatic --no-input
+```
+
+# Не забудь добавить .env файл в папку infra 
+наполнение примерно такое
+```
+DB_ENGINE=django.db.backends.postgresql # указываем, что работаем с postgresql
+DB_NAME=postgres # имя базы данных
+POSTGRES_USER=postgres # логин для подключения к базе данных
+POSTGRES_PASSWORD=postgres # пароль для подключения к БД (установите свой)
+DB_HOST=db # название сервиса (контейнера)
+DB_PORT=5432 # порт для подключения к БД
 ```

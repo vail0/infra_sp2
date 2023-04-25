@@ -117,3 +117,10 @@ POSTGRES_PASSWORD=postgres # пароль для подключения к БД 
 DB_HOST=db # название сервиса (контейнера)
 DB_PORT=5432 # порт для подключения к БД
 ```
+
+# Также добавьте в .env файл данные
+```
+ALLOWED_HOSTS = ['*']
+DEBUG = True/False
+SECRET_KEY = '<Ваш secret_key>'
+```
